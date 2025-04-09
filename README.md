@@ -1,4 +1,4 @@
-<img width="565" alt="image" src="https://github.com/user-attachments/assets/2bc34dd6-0767-44fd-aabf-57864ce7c08f" /># MPA
+# MPA
 Dataset and codes for Spatiotemporal Distribution and Influencing Factors of Chinese Marine Protected Areas Using A Social-Ecological System Framework
 ## Data preparation
 Import data into Stata.
