@@ -29,7 +29,7 @@ PPMLHDFE regression with full sample exported to ```Full.doc```.
 ```stata
 gen ec = exp(c)
 gen Time = Year-1998
-global list "Precip Wind Green Traffic Density Construct Tech Infra Culture GDP Pop Export”
+global list "Precip Wind Green Traffic Density Built Tech Infra Culture GDP Pop Export”
 
 ppmlhdfe Area Time $list, absorb(Province City) vce(robust) nolog
 outreg2 using Full.doc, replace alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Area) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES) 
