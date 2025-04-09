@@ -9,10 +9,10 @@ import excel "/Users/gurumakaza/Library/CloudStorage/OneDrive-MacauUniversityofS
 
 gen Precip = precipitation_six_hour_year/10
 gen Wind = wind_speed_year/10
-gen Green =公园绿地面积_公顷_市辖区/10000
+gen Green = 公园绿地面积_公顷_市辖区/10000
 gen Traffic = 水运客运量_万人_全市/1000
 gen Density = 人口密度_人每平方公里_全市/1000
-gen Built =建成区面积_平方公里_市辖区/100
+gen Built = 建成区面积_平方公里_市辖区/100
 gen Tech = 科研综合技术服务业_人_市辖区/10000
 gen Infra = 城市环境基础设施建设本年完成投资额_万元/(1000000)
 gen Culture = 每百人公共图书馆藏书_册_全市/100
