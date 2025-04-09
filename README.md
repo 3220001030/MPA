@@ -75,3 +75,5 @@ cap erase Built.txt  // Delete existing file before starting
 foreach threshold of numlist 0.7(0.01)1.1 {
     ppmlhdfe Area Time $list if Built<=`threshold', absorb(Province City) vce(robust) nolog
     outreg2 using Built.doc, append keep(Built) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(if Density<=`threshold') addstat(Pseudo R-squared, `e(r2_p)’)
+}
+```
