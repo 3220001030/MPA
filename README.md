@@ -9,7 +9,7 @@ import excel "/Users/gurumakaza/Library/CloudStorage/OneDrive-MacauUniversityofS
 ```
 ## Descriptive statistics
 ```stata
-tabstat Area ec $list, stat(n mean sd min max) col(s) format(%6.3f)
+tabstat Area ec $list, stat(n mean sd min max p25 p50 p75) col(s) format(%6.3f)
 ```
 ## Full regression
 PPMLHDFE regression with full sample exported to ```Full.doc```.
