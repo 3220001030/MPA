@@ -105,5 +105,4 @@ ppmlhdfe Area Time $list if Density>0.56, absorb(Province City) vce(robust) nolo
 outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density>0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES)
 ppmlhdfe Area $list if Density>0.56, absorb(Province City Year) vce(robust) nolog
 outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density>0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
-}
 ```
