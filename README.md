@@ -52,7 +52,7 @@ outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle
 ppmlhdfe Area $list if Year >2009, absorb(Province City Year) vce(robust) nolog
 outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(2010-2020) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
 ```
-## Threshold analysis
+## Threshold calculation
 ### Population density
 Threshold analysis exported to ```Density.doc```.
 ```stata
@@ -87,5 +87,23 @@ cap erase Export.txt  // Delete existing file before starting
 foreach threshold of numlist 0.01(0.001)0.04 {
     ppmlhdfe Area Time $list if Export<=`threshold', absorb(Province City) vce(robust) nolog
     outreg2 using Export.doc, append keep(Export) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(<=`threshold') addstat(Pseudo R-squared, `e(r2_p)’)
+}
+```
+## Threshold regression
+### Population density
+Threshold analysis exported to ```Density1.doc```.
+```stata
+erase Density1.txt  
+erase Density1.doc
+cap erase Density1.doc  // Delete existing file before starting
+cap erase Density1.txt  // Delete existing file before starting
+ppmlhdfe Area Time $list if Density<=0.56, absorb(Province City) vce(robust) nolog
+outreg2 using Period.doc, replace alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density<=0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES) 
+ppmlhdfe Area $list if Density<=0.56, absorb(Province City Year) vce(robust) nolog
+outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density<=0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
+ppmlhdfe Area Time $list if Density>0.56, absorb(Province City) vce(robust) nolog
+outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density>0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES)
+ppmlhdfe Area $list if Density>0.56, absorb(Province City Year) vce(robust) nolog
+outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density>0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
 }
 ```
