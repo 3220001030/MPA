@@ -48,6 +48,6 @@ cap erase Density.doc  // Delete existing file before starting
 cap erase Density.txt  // Delete existing file before starting
 foreach threshold of numlist 0.5(0.1)0.8 {
     ppmlhdfe Area Time $list if Density<=`threshold', absorb(Province City) vce(robust) nolog
-    outreg2 using Density.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(if Density<=`threshold')
+    outreg2 using Density.doc, append keep(Density) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(if Density<=`threshold') addstat(Pseudo R-squared, `e(r2_p)’)
 }
 ```
