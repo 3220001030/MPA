@@ -98,11 +98,11 @@ erase Density1.doc
 cap erase Density1.doc  // Delete existing file before starting
 cap erase Density1.txt  // Delete existing file before starting
 ppmlhdfe Area Time $list if Density<=0.56, absorb(Province City) vce(robust) nolog
-outreg2 using Period.doc, replace alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density<=0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES) 
+outreg2 using Density1.doc, replace alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density<=0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES) 
 ppmlhdfe Area $list if Density<=0.56, absorb(Province City Year) vce(robust) nolog
-outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density<=0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
+outreg2 using Density1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density<=0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
 ppmlhdfe Area Time $list if Density>0.56, absorb(Province City) vce(robust) nolog
-outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density>0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES)
+outreg2 using Density1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density>0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES)
 ppmlhdfe Area $list if Density>0.56, absorb(Province City Year) vce(robust) nolog
-outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density>0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
+outreg2 using Density1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density>0.56) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
 ```
