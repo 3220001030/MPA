@@ -52,6 +52,18 @@ ppmlhdfe Area $list if Year >2009, absorb(Province City Year) vce(robust) nolog
 outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(2010-2020) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
 ```
 ## Threshold calculation
+### GDP
+Threshold analysis exported to ```GDP.doc```.
+```stata
+erase GDP.txt  
+erase GDP.doc
+cap erase GDP.doc  // Delete existing file before starting
+cap erase GDP.txt  // Delete existing file before starting
+foreach threshold of numlist 0.048(0.005)0.273 {
+    ppmlhdfe Area Time $list if GDP<=`threshold', absorb(Province City) vce(robust) nolog
+    outreg2 using GDP.doc, append keep(GDP) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(`threshold') addstat(Pseudo R-squared, `e(r2_p)’)
+}
+```
 ### Population density
 Threshold analysis exported to ```Density.doc```.
 ```stata
