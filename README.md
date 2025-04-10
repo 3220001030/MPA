@@ -101,23 +101,6 @@ foreach threshold of numlist 0.01(0.002)0.118 {
 }
 ```
 ## Threshold regression
-### Population density
-Threshold analysis exported to ```Density1.doc```.
-```stata
-erase Density1.txt  
-erase Density1.doc
-cap erase Density1.doc  // Delete existing file before starting
-cap erase Density1.txt  // Delete existing file before starting
-scalar threshold = 0.6
-ppmlhdfe Area Time $list if Density<=threshold, absorb(Province City) vce(robust) nolog
-outreg2 using Density1.doc, replace alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density<=`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES) 
-ppmlhdfe Area $list if Density<=threshold, absorb(Province City Year) vce(robust) nolog
-outreg2 using Density1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density<=`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
-ppmlhdfe Area Time $list if Density>threshold, absorb(Province City) vce(robust) nolog
-outreg2 using Density1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density>`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES)
-ppmlhdfe Area $list if Density>threshold, absorb(Province City Year) vce(robust) nolog
-outreg2 using Density1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Density>`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
-```
 ### GDP
 Threshold analysis exported to ```GDP1.doc```.
 ```stata
@@ -134,6 +117,23 @@ ppmlhdfe Area Time $list if GDP>threshold, absorb(Province City) vce(robust) nol
 outreg2 using GDP1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP>`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES)
 ppmlhdfe Area $list if GDP>threshold, absorb(Province City Year) vce(robust) nolog
 outreg2 using GDP1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP>`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
+```
+### Built-up area
+Threshold analysis exported to ```Built1.doc```.
+```stata
+erase Built1.txt  
+erase Built1.doc
+cap erase Built1.doc  // Delete existing file before starting
+cap erase Built1.txt  // Delete existing file before starting
+scalar threshold = 0.8
+ppmlhdfe Area Time $list if Built<=threshold, absorb(Province City) vce(robust) nolog
+outreg2 using Built1.doc, replace alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Built<=`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES) 
+ppmlhdfe Area $list if Built<=threshold, absorb(Province City Year) vce(robust) nolog
+outreg2 using Built1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Built<=`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
+ppmlhdfe Area Time $list if Built>threshold, absorb(Province City) vce(robust) nolog
+outreg2 using Built1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Built>`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES)
+ppmlhdfe Area $list if Built>threshold, absorb(Province City Year) vce(robust) nolog
+outreg2 using Built1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Built>`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
 ```
 ### Export
 ```stata
