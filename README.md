@@ -19,6 +19,9 @@ gen Culture = 每百人公共图书馆藏书_册_全市/100
 gen GDP = 地区生产总值_当年价格_亿元_全市/(10000)
 gen Pop = 年平均人口_万人_全市/100
 gen Export = 货物出口额_万元_全市/(100000000)
+gen ec = exp(c)
+gen Time = Year-1998
+global list "Precip Wind Green Traffic Density Built Tech Infra Culture GDP Pop Export”
 ```
 ## Descriptive statistics
 ```stata
@@ -27,10 +30,6 @@ tabstat Area ec $list, stat(n mean sd min max p25 p50 p75) col(s) format(%6.3f)
 ## Full regression
 PPMLHDFE regression with full sample exported to ```Full.doc```.
 ```stata
-gen ec = exp(c)
-gen Time = Year-1998
-global list "Precip Wind Green Traffic Density Built Tech Infra Culture GDP Pop Export”
-
 ppmlhdfe Area Time $list, absorb(Province City) vce(robust) nolog
 outreg2 using Full.doc, replace alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Area) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES) 
 ppmlhdfe Area $list, absorb(Province City Year) vce(robust) nolog
