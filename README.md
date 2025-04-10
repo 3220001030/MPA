@@ -83,7 +83,7 @@ erase Export.txt
 erase Export.doc
 cap erase Export.doc  // Delete existing file before starting
 cap erase Export.txt  // Delete existing file before starting
-foreach threshold of numlist 0.01(0.001)0.117 {
+foreach threshold of numlist 0.01(0.002)0.118 {
     ppmlhdfe Area Time $list if Export<=`threshold', absorb(Province City) vce(robust) nolog
     outreg2 using Export.doc, append keep(Export) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(`threshold') addstat(Pseudo R-squared, `e(r2_p)’)
 }
