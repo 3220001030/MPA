@@ -141,7 +141,7 @@ erase Export1.txt
 erase Export1.doc
 cap erase Export1.doc  // Delete existing file before starting
 cap erase Export1.txt  // Delete existing file before starting
-scalar threshold = 0.7
+scalar threshold = 0.014
 ppmlhdfe Area Time $list if Export<=threshold, absorb(Province City) vce(robust) nolog
 outreg2 using Export1.doc, replace alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Export<=`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES) 
 ppmlhdfe Area $list if Export<=threshold, absorb(Province City Year) vce(robust) nolog
