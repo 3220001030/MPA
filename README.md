@@ -61,7 +61,7 @@ cap erase Density.doc  // Delete existing file before starting
 cap erase Density.txt  // Delete existing file before starting
 foreach threshold of numlist 0.362(0.01)1.005 {
     ppmlhdfe Area Time $list if Density<=`threshold', absorb(Province City) vce(robust) nolog
-    outreg2 using Density.doc, append keep(Density) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(<=`threshold') addstat(Pseudo R-squared, `e(r2_p)’)
+    outreg2 using Density.doc, append keep(Density) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(`threshold') addstat(Pseudo R-squared, `e(r2_p)’)
 }
 ```
 ### Built-up area
@@ -73,7 +73,7 @@ cap erase Built.doc  // Delete existing file before starting
 cap erase Built.txt  // Delete existing file before starting
 foreach threshold of numlist 0.530(0.01)0.910 {
     ppmlhdfe Area Time $list if Built<=`threshold', absorb(Province City) vce(robust) nolog
-    outreg2 using Built.doc, append keep(Built) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(<=`threshold') addstat(Pseudo R-squared, `e(r2_p)’)
+    outreg2 using Built.doc, append keep(Built) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(`threshold') addstat(Pseudo R-squared, `e(r2_p)’)
 }
 ```
 ### Export
@@ -85,7 +85,7 @@ cap erase Export.doc  // Delete existing file before starting
 cap erase Export.txt  // Delete existing file before starting
 foreach threshold of numlist 0.01(0.001)0.04 {
     ppmlhdfe Area Time $list if Export<=`threshold', absorb(Province City) vce(robust) nolog
-    outreg2 using Export.doc, append keep(Export) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(<=`threshold') addstat(Pseudo R-squared, `e(r2_p)’)
+    outreg2 using Export.doc, append keep(Export) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(`threshold') addstat(Pseudo R-squared, `e(r2_p)’)
 }
 ```
 ## Threshold regression
