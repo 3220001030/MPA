@@ -59,7 +59,7 @@ erase Density.txt
 erase Density.doc
 cap erase Density.doc  // Delete existing file before starting
 cap erase Density.txt  // Delete existing file before starting
-foreach threshold of numlist 0.2(0.01)0.8 {
+foreach threshold of numlist 0.362(0.01)1.005 {
     ppmlhdfe Area Time $list if Density<=`threshold', absorb(Province City) vce(robust) nolog
     outreg2 using Density.doc, append keep(Density) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(<=`threshold') addstat(Pseudo R-squared, `e(r2_p)’)
 }
@@ -71,7 +71,7 @@ erase Built.txt
 erase Built.doc
 cap erase Built.doc  // Delete existing file before starting
 cap erase Built.txt  // Delete existing file before starting
-foreach threshold of numlist 0.7(0.01)1.1 {
+foreach threshold of numlist 0.530(0.01)0.910 {
     ppmlhdfe Area Time $list if Built<=`threshold', absorb(Province City) vce(robust) nolog
     outreg2 using Built.doc, append keep(Built) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(<=`threshold') addstat(Pseudo R-squared, `e(r2_p)’)
 }
