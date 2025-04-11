@@ -18,7 +18,7 @@ gen Infra = 城市环境基础设施建设本年完成投资额_万元/(1000000)
 gen Culture = 每百人公共图书馆藏书_册_全市/100
 gen GDP = 地区生产总值_当年价格_亿元_全市/(10000)
 gen Pop = 年平均人口_万人_全市/100
-gen Export = 货物出口额_万元_全市/(100000000)
+gen Export = 货物出口额_万元_全市/(100000000*deflator)
 gen ec = exp(c)
 gen Time = Year-1998
 global list "Precip Wind Green Traffic Density Built Tech Infra Culture GDP Pop Export”
