@@ -26,6 +26,9 @@ global list "Precip Wind Green Traffic Density Built Tech Infra Culture GDP Pop 
 ## Descriptive statistics
 ```stata
 asdoc tabstat Area c ec $list, stat(N mean sd min p25 p50 p75 p90 max) col(s) format(%6.3f)
+coldiag2 $list
+reg Area Time $list
+vif
 ```
 |          |   N  |   Mean    |   SD     |   Min  |   p25  |   Median |   p75   |   p90    |   Max     |
 | -------- | ---- | --------- | -------- | ------ | ------ | -------- | ------- | -------- | --------- |
@@ -43,7 +46,7 @@ asdoc tabstat Area c ec $list, stat(N mean sd min p25 p50 p75 p90 max) col(s) fo
 |  Culture | 1127 | .753      | 1.276    | .02    | .189   | .337     | .701    | 1.643    | 9.372     |
 |  GDP     | 1127 | .247      | 0.396    | .002   | .048   | .115     | .273    | .614     | 3.87      |
 |  Pop     | 1127 | 4.367     | 2.817    | .481   | 2.401  | 3.51     | 6.534   | 7.959    | 14.66     |
-|  Export  | 1127 | .112      | 0.233    | 0      | .01    | .024     | .117    | .247     | 1.697     |
+|  Export  | 1127 | 0.090      | 0.185     | 0      | 0.008     | 0.019      | 0.089     | 0.203      | 1.096      |
 ## Full regression
 PPMLHDFE regression with full sample exported to ```Full.doc```.
 ```stata
