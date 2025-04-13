@@ -26,9 +26,14 @@ global list "Precip Wind Green Traffic Density Built Tech Infra Culture GDP Pop 
 ## Descriptive statistics
 ```stata
 asdoc tabstat Area c ec $list, stat(N mean sd min p25 p50 p75 p90 max) col(s) format(%6.3f)
+
 coldiag2 $list
+
 reg Area Time $list
 vif
+
+overdisp Area Time $list
+overdisp ec Time $list
 ```
 |          |   N  |   Mean    |   SD     |   Min  |   p25  |   Median |   p75   |   p90    |   Max     |
 | -------- | ---- | --------- | -------- | ------ | ------ | -------- | ------- | -------- | --------- |
