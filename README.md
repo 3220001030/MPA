@@ -194,7 +194,7 @@ erase Traffic1.txt
 erase Traffic1.doc
 cap erase Traffic1.doc  // Delete existing file before starting
 cap erase Traffic1.txt  // Delete existing file before starting
-scalar threshold = 0.025
+scalar threshold = 0.033
 ppmlhdfe Area Time $list if Traffic<=threshold, absorb(Province City) vce(robust) nolog
 outreg2 using Traffic1.doc, replace alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Traffic<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES) 
 ppmlhdfe Area $list if Traffic<=threshold, absorb(Province City Year) vce(robust) nolog
