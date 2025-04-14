@@ -21,7 +21,7 @@ gen Pop = 年平均人口_万人_全市/100
 gen Export = 货物出口额_万元_全市/(100000000*deflator)
 gen ec = exp(c)
 gen Time = Year-1998
-global list "Precip Wind Green Traffic Density Built Tech Infra Culture GDP Pop Export”
+global list "Precip Wind Green Traffic Density Built Tech Infra Book GDP Pop Export”
 ```
 ## Descriptive statistics
 ```stata
