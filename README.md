@@ -22,7 +22,7 @@ gen Pop = 年平均人口_万人_全市/100
 gen Export = 货物出口额_万元_全市/(100000000*deflator)
 gen ec = exp(c)
 gen Time = Year-1998
-global list "Precip Wind Green Traffic Density Built Tech Infra Book GDPr Pop Export”
+global list "Precip Wind Green Traffic Density Built Tech Infra Book GDP Pop Export”
 ```
 ## Descriptive statistics
 ```stata
@@ -99,7 +99,7 @@ cap erase GDP.doc  // Delete existing file before starting
 cap erase GDP.txt  // Delete existing file before starting
 foreach threshold of numlist .043(0.004).205 {
     ppmlhdfe Area Time $list if GDPr<=`threshold', absorb(Province City) vce(robust) nolog
-    outreg2 using GDP.doc, append keep(GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(`threshold') addstat(Pseudo R-squared, `e(r2_p)')
+    outreg2 using GDP.doc, append keep(GDP) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(`threshold') addstat(Pseudo R-squared, `e(r2_p)')
 }
 ```
 ```stata
@@ -109,7 +109,7 @@ cap erase GDPec.doc  // Delete existing file before starting
 cap erase GDPec.txt  // Delete existing file before starting
 foreach threshold of numlist .043(0.004).205 {
     ppmlhdfe ec Time $list if GDPr<=`threshold', absorb(Province City) vce(robust) nolog
-    outreg2 using GDPec.doc, append keep(GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(`threshold') addstat(Pseudo R-squared, `e(r2_p)')
+    outreg2 using GDPec.doc, append keep(GDP) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(`threshold') addstat(Pseudo R-squared, `e(r2_p)')
 }
 ```
 ### Population density
@@ -156,15 +156,15 @@ erase GDP1.txt
 erase GDP1.doc
 cap erase GDP1.doc  // Delete existing file before starting
 cap erase GDP1.txt  // Delete existing file before starting
-scalar threshold = 0.103
+scalar threshold = 0.055
 ppmlhdfe Area Time $list if GDPr<=threshold, absorb(Province City) vce(robust) nolog
-outreg2 using GDP1.doc, replace keep(Time GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
+outreg2 using GDP1.doc, replace keep(Time GDP) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
 ppmlhdfe Area $list if GDPr<=threshold, absorb(Province City) vce(robust) nolog
-outreg2 using GDP1.doc, append keep(GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES) 
+outreg2 using GDP1.doc, append keep(GDP) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES) 
 ppmlhdfe Area Time $list if GDPr>threshold, absorb(Province City) vce(robust) nolog
-outreg2 using GDP1.doc, append keep(Time GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP>`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
+outreg2 using GDP1.doc, append keep(Time GDP) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP>`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
 ppmlhdfe Area $list if GDPr>threshold, absorb(Province City) vce(robust) nolog
-outreg2 using GDP1.doc, append keep(GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP>`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
+outreg2 using GDP1.doc, append keep(GDP) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP>`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
 ```
 ### Built-up area
 Threshold analysis exported to ```Built1.doc```.
