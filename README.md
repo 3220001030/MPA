@@ -160,7 +160,7 @@ scalar threshold = 0.103
 ppmlhdfe Area Time $list if GDPr<=threshold, absorb(Province City) vce(robust) nolog
 outreg2 using GDP1.doc, replace keep(GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
 ppmlhdfe Area $list if GDPr<=threshold, absorb(Province City) vce(robust) nolog
-outreg2 using GDP1.doc, replace keep(GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES) 
+outreg2 using GDP1.doc, append keep(GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES) 
 ppmlhdfe Area Time $list if GDPr>threshold, absorb(Province City) vce(robust) nolog
 outreg2 using GDP1.doc, append keep(GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP>`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
 ppmlhdfe Area $list if GDPr>threshold, absorb(Province City) vce(robust) nolog
