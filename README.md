@@ -156,16 +156,15 @@ erase GDP1.txt
 erase GDP1.doc
 cap erase GDP1.doc  // Delete existing file before starting
 cap erase GDP1.txt  // Delete existing file before starting
-scalar threshold1 = 0.055
-scalar threshold2 = 0.80
+scalar threshold = 0.103
 ppmlhdfe Area Time $list if GDPr<=threshold1, absorb(Province City) vce(robust) nolog
-outreg2 using GDP1.doc, replace keep(Traffic) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
-ppmlhdfe ec Time $list if GDPr<=threshold2, absorb(Province City) vce(robust) nolog
-outreg2 using GDP1.doc, replace keep(Traffic) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES) 
+outreg2 using GDP1.doc, replace keep(GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
+ppmlhdfe Area $list if GDPr<=threshold2, absorb(Province City) vce(robust) nolog
+outreg2 using GDP1.doc, replace keep(GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES) 
 ppmlhdfe Area Time $list if GDPr>threshold1, absorb(Province City) vce(robust) nolog
-outreg2 using GDP1.doc, append keep(Traffic) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP>`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
-ppmlhdfe ec Time $list if GDPr>threshold2, absorb(Province City) vce(robust) nolog
-outreg2 using GDP1.doc, append keep(Traffic) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP>`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
+outreg2 using GDP1.doc, append keep(GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP>`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
+ppmlhdfe Area $list if GDPr>threshold2, absorb(Province City) vce(robust) nolog
+outreg2 using GDP1.doc, append keep(GDPr) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP>`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
 ```
 ### Built-up area
 Threshold analysis exported to ```Built1.doc```.
@@ -183,21 +182,6 @@ ppmlhdfe Area Time $list if Built>threshold, absorb(Province City) vce(robust) n
 outreg2 using Built1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Built>`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES)
 ppmlhdfe Area $list if Built>threshold, absorb(Province City Year) vce(robust) nolog
 outreg2 using Built1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Built>`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
-```
-```stata
-erase GDP1ec.txt  
-erase GDP1ec.doc
-cap erase GDP1ec.doc  // Delete existing file before starting
-cap erase GDP1ec.txt  // Delete existing file before starting
-scalar threshold = 0.05
-ppmlhdfe ec Time $list if GDPr<=threshold, absorb(Province City) vce(robust) nolog
-outreg2 using GDP1ec.doc, replace alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES) 
-ppmlhdfe ec $list if GDPr<=threshold, absorb(Province City Year) vce(robust) nolog
-outreg2 using GDP1ec.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP<=`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES, Year FE, YES)
-ppmlhdfe ec Time $list if GDPr>threshold, absorb(Province City) vce(robust) nolog
-outreg2 using GDP1ec.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP>`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
-ppmlhdfe ec $list if GDPr>threshold, absorb(Province City Year) vce(robust) nolog
-outreg2 using GDP1ec.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(GDP>`threshold') addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES, Year FE, YES)
 ```
 ### Export
 ```stata
