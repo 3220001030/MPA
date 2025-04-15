@@ -110,6 +110,7 @@ cap erase GDPec.txt  // Delete existing file before starting
 foreach threshold of numlist .043(0.004).205 {
     ppmlhdfe ec Time $list if GDPr<=`threshold', absorb(Province City) vce(robust) nolog
     outreg2 using GDP.doc, append keep(GDP) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(`threshold') addstat(Pseudo R-squared, `e(r2_p)')
+}
 ```
 ### Population density
 Threshold analysis exported to ```Density.doc```.
