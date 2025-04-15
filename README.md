@@ -85,7 +85,7 @@ erase Traffic.txt
 erase Traffic.doc
 cap erase Traffic.doc  // Delete existing file before starting
 cap erase Traffic.txt  // Delete existing file before starting
-foreach threshold of numlist .018(0.01).264 {
+foreach threshold of numlist .018(0.005).264 {
     ppmlhdfe Area Time $list if Traffic<=`threshold', absorb(Province City) vce(robust) nolog
     outreg2 using Traffic.doc, append keep(Traffic) alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(`threshold') addstat(Pseudo R-squared, `e(r2_p)')
 }
