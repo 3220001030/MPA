@@ -69,13 +69,13 @@ outreg2 using Full.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(C
 Period anaysis exported to ```Period.doc```
 ```stata
 ppmlhdfe Area Time $list if Year <2010, absorb(Province City) vce(robust) nolog
-outreg2 using Period.doc, replace alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(1998-2009) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES) 
-ppmlhdfe Area $list if Year <2010, absorb(Province City Year) vce(robust) nolog
-outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(1998-2009) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
+outreg2 using Period.doc, replace alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(1998-2009) addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES) 
+ppmlhdfe ec Time $list if Year <2010, absorb(Province City Year) vce(robust) nolog
+outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(1998-2009) addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES, Year FE, YES)
 ppmlhdfe Area Time $list if Year >2009, absorb(Province City) vce(robust) nolog
-outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(2010-2020) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES)
-ppmlhdfe Area $list if Year >2009, absorb(Province City Year) vce(robust) nolog
-outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(2010-2020) addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
+outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(2010-2020) addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES)
+ppmlhdfe ec Time $list if Year >2009, absorb(Province City Year) vce(robust) nolog
+outreg2 using Period.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(2010-2020) addstat(Pseudo R-squared, `e(r2_p)') addtext(Province FE, YES, City FE, YES, Year FE, YES)
 ```
 ## Threshold calculation
 ### Maritime traffic
