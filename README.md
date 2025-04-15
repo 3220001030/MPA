@@ -182,6 +182,7 @@ ppmlhdfe Area Time $list if Built>threshold, absorb(Province City) vce(robust) n
 outreg2 using Built1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Built>`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES)
 ppmlhdfe Area $list if Built>threshold, absorb(Province City Year) vce(robust) nolog
 outreg2 using Built1.doc, append alpha(0.001, 0.01, 0.05) bdec(3) tdec(3) ctitle(Built>`threshold') addstat(Pseudo R-squared, `e(r2_p)’) addtext(Province FE, YES, City FE, YES, Year FE, YES)
+}
 ```
 ### Export
 ```stata
